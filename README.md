@@ -51,12 +51,14 @@ By integrating tools like Bandit (Python security analyzer) and Semgrep (static 
 
 The app will be available at http://localhost:5000.
 
-### Running Security Scans Locally
-  1. Bandit (Python security linter)
+# Running Security Scans Locally
+  Bandit (Python security linter)
+  ``` bash                      
+  bandit -r secure_app/
+
+  Semgrep 
   ```bash
-    bandit -r secure_app/
-
-  2. Semgrep (pattern-based static analysis)
-
+  semgrep scan --config=p/ci
+   
 
  
