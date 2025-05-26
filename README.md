@@ -56,10 +56,15 @@ The app will be available at http://localhost:5000.
   ```bash                      
   bandit -r secure_app/
   ```
-  Semgrep 
+  Semgrep Scan
   ```bash
-  semgrep scan --config=p/ci
+ semgrep --config auto secure_app/
   ```
+If you don’t have config, use:
+```bash
+semgrep --config=p/ci secure_app/
+```
+
 GitHub Actions Integration
 
 The .github/workflows/security-scan.yml workflow runs Bandit and Semgrep automatically on each push or pull request to the main branch.
