@@ -55,7 +55,9 @@ The app will be available at http://localhost:5000.
   Bandit (Python security linter)
   ```bash                      
   bandit -r secure_app/
-  ```
+ ```
+  ![secure-ci-pipeline](assets/bandit-r.png)
+  
   Semgrep Scan
   ```bash
  semgrep --config auto secure_app/
