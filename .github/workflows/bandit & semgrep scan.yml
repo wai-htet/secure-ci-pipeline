@@ -1,0 +1,45 @@
+# This is a basic workflow to help you get started with Actions
+
+
+ on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  security-scan:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+
+    - name: Install Bandit & Semgrep
+      run: |
+        pip install bandit
+        curl -sL https://semgrep.dev/install.sh | bash
+
+    - name: Run Bandit
+      run: |
+        bandit -r secure_app -f sarif -o bandit-results.sarif || true
+      continue-on-error: true
+
+    - name: Run Semgrep
+      run: |
+        semgrep scan --config=auto --sarif -o semgrep-results.sarif || true
+      continue-on-error: true
+
+    - name: Upload results to GitHub Security tab
+      uses: github/codeql-action/upload-sarif@v2
+      with:
+        sarif_file: bandit-results.sarif
+
+    - name: Upload Semgrep results
+      uses: github/codeql-action/upload-sarif@v2
+      with:
+        sarif_file: semgrep-results.sarif
