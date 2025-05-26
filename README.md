@@ -66,7 +66,7 @@ If you don’t have config, use:
 ```bash
 semgrep --config=p/ci secure_app/
 ```
-![secure-ci-pipeline](assets/Screenshot from 2025-05-27 05-16-13.png) 
+![secure-ci-pipeline](assets/semgrepscan.png.png) 
 
 GitHub Actions Integration
 
